@@ -3,18 +3,15 @@
 ## Running in local development environment
 
 ```
-go mod init order
-go mod tidy 
-go build main.go
-./main
-
+mvn spring-boot:run
 ```
 
 ## Packaging and Running in docker environment
 
 ```
-docker build -t username/order:latest .
-docker run username/order:latest
+mvn package -B -DskipTests
+docker build -t username/order:v1 .
+docker run username/order:v1
 ```
 
 ## Push images and running in Kubernetes
@@ -23,7 +20,7 @@ docker run username/order:latest
 docker login 
 # in case of docker hub, enter your username and password
 
-docker push username/order:latest
+docker push username/order:v1
 ```
 
 Edit the deployment.yaml under the /kubernetes directory:
